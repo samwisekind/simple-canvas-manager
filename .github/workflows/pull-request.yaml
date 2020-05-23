@@ -9,7 +9,7 @@ on:
     - cron: "0 0 * * *" # Every day at 0000 UTC (midnight)
 
 jobs:
-  test:
+  lint-and-test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
