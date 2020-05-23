@@ -18,9 +18,9 @@ describe('CanvasElement', () => {
     document.body.innerHTML = '<div></div>';
     const element = document.body.querySelector('div');
 
-    const invokeManager = (targetElement) => new CanvasManager(targetElement);
+    const createManager = (targetElement) => new CanvasManager(targetElement);
 
-    expect(() => invokeManager(element)).toThrow(TypeError);
-    expect(() => invokeManager(element)).toThrow('Class must be invoked with a Canvas element');
+    expect(() => createManager(element)).toThrow(TypeError);
+    expect(() => createManager(element)).toThrow('Class must be invoked with a Canvas element');
   });
 });
