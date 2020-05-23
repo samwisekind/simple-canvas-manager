@@ -1,0 +1,62 @@
+{
+  "name": "@flamov/simple-canvas-manager",
+  "version": "0.0.0",
+  "description": "A simple 2D canvas manager",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "parcel build src/index.js -d dist/",
+    "watch": "parcel serve src/index.html -d dist/",
+    "test": "npm run test:eslint && npm run test:unit",
+    "test:eslint": "eslint src/",
+    "test:unit": "jest .*.spec.js",
+    "test:unit:watch": "npm run test:unit -- --watch",
+    "test:unit:coverage": "npm run test:unit -- --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Flamov/simple-canvas-manager.git"
+  },
+  "keywords": [
+    "canvas",
+    "2d",
+    "manager",
+    "simple"
+  ],
+  "author": "Flamov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Flamov/simple-canvas-manager/issues"
+  },
+  "homepage": "https://github.com/Flamov/simple-canvas-manager#readme",
+  "devDependencies": {
+    "eslint": "^7.1.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "jest": "^26.0.1",
+    "parcel-bundler": "^1.12.4"
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "env": {
+      "browser": true,
+      "jest": true
+    }
+  },
+  "jest": {
+    "verbose": true,
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "node_modules",
+      "dist/"
+    ]
+  },
+  "browserslist": [
+    "> 0.3%",
+    "Android >= 4",
+    "Firefox >= 20",
+    "iOS >= 8",
+    "IE >= 11"
+  ]
+}
