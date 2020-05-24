@@ -14,13 +14,20 @@ describe('CanvasElement', () => {
     expect(manager.canvas).toBe(element);
   });
 
-  it('Throws error when CanvasManager is created with a non-canvas element', () => {
+  it('Throws a TypeError when CanvasManager is created with a non-HTML type', () => {
+    const createManager = () => new CanvasManager(123);
+
+    expect(() => createManager()).toThrow(TypeError);
+    expect(() => createManager()).toThrow('CanvasManager must be created with an HTML element, type provided is: number');
+  });
+
+  it('Throws a TypeError when CanvasManager is created with a non-canvas HTML element', () => {
     document.body.innerHTML = '<div></div>';
     const element = document.body.querySelector('div');
 
     const createManager = (targetElement) => new CanvasManager(targetElement);
 
     expect(() => createManager(element)).toThrow(TypeError);
-    expect(() => createManager(element)).toThrow('Class must be invoked with a Canvas element');
+    expect(() => createManager(element)).toThrow('CanvasManager must be created with an HTML Canvas element, type provided is: div');
   });
 });

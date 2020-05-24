@@ -1,7 +1,9 @@
 class CanvasManager {
   constructor(element) {
-    if (element instanceof HTMLCanvasElement === false) {
-      throw TypeError('Class must be invoked with a Canvas element');
+    if (element instanceof HTMLElement === false) {
+      throw TypeError(`CanvasManager must be created with an HTML element, type provided is: ${typeof element}`);
+    } else if (element instanceof HTMLCanvasElement === false) {
+      throw TypeError(`CanvasManager must be created with an HTML Canvas element, type provided is: ${element.nodeName.toLowerCase()}`);
     }
 
     this.canvas = element;
