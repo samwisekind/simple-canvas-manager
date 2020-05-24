@@ -4,8 +4,8 @@
   "description": "A simple 2D canvas manager",
   "main": "src/index.js",
   "scripts": {
-    "build": "parcel build src/index.js -d dist/",
-    "watch": "parcel serve src/index.html -d dist/",
+    "build": "tsc src/index.ts --outDir dist/",
+    "watch": "npm run build -- -w",
     "test": "npm run test:eslint && npm run test:unit",
     "test:eslint": "eslint src/",
     "test:unit": "jest .*.spec.js",
@@ -29,11 +29,14 @@
   },
   "homepage": "https://github.com/Flamov/simple-canvas-manager#readme",
   "devDependencies": {
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-typescript": "^7.9.0",
+    "canvas": "^2.6.1",
     "eslint": "^7.1.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
     "jest": "^26.0.1",
-    "parcel-bundler": "^1.12.4"
+    "typescript": "^3.9.3"
   },
   "eslintConfig": {
     "extends": "airbnb-base",
@@ -42,21 +45,27 @@
       "jest": true
     }
   },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ],
+      "@babel/preset-typescript"
+    ]
+  },
   "jest": {
     "verbose": true,
     "collectCoverageFrom": [
-      "src/**/*.js"
+      "src/**/*.ts"
     ],
     "coveragePathIgnorePatterns": [
       "node_modules",
       "dist/"
     ]
-  },
-  "browserslist": [
-    "> 0.3%",
-    "Android >= 4",
-    "Firefox >= 20",
-    "iOS >= 8",
-    "IE >= 11"
-  ]
+  }
 }
