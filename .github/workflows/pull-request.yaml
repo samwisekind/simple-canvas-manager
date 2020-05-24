@@ -1,0 +1,26 @@
+name: Lint and test
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: "0 0 * * *" # Every day at 0000 UTC (midnight)
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Use Node.js 14
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14
+    - name: Install dependencies
+      run: npm ci --unsafe-perm
+    - name: Test eslint
+      run: npm run test:eslint
+    - name: Test unit
+      run: npm run test:unit
