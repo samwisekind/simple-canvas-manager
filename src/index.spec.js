@@ -1,4 +1,4 @@
-const CanvasManager = require('./index');
+const CanvasManager = require('./index.ts');
 
 beforeEach(() => {
   document.body.innerHTML = '';
@@ -11,7 +11,8 @@ describe('CanvasElement', () => {
 
     const manager = new CanvasManager(element);
 
-    expect(manager.canvas).toBe(element);
+    expect(manager.element).toBe(element);
+    expect(manager.canvas).toBe(element.getContext('2d'));
   });
 
   it('Throws a TypeError when CanvasManager is created with a non-HTML type', () => {
