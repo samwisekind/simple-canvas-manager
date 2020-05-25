@@ -4,7 +4,7 @@
   "description": "A simple 2D canvas manager",
   "main": "src/index.js",
   "scripts": {
-    "build": "tsc src/index.ts --outDir dist/",
+    "build": "tsc src/CanvasManager.ts -t es5 --outDir dist/",
     "watch": "npm run build -- -w",
     "test": "npm run test:eslint && npm run test:unit",
     "test:eslint": "eslint src/",

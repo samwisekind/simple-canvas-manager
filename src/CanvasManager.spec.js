@@ -1,4 +1,4 @@
-const CanvasManager = require('./index.ts');
+const CanvasManager = require('./CanvasManager.ts');
 
 beforeEach(() => {
   document.body.innerHTML = '';
