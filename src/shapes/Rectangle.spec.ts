@@ -1,4 +1,6 @@
-import CanvasManager from '../CanvasManager.ts';
+// @ts-nocheck
+
+import CanvasManager from '../CanvasManager';
 
 beforeEach(() => {
   document.body.innerHTML = '<canvas></canvas>';

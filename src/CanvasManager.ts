@@ -15,7 +15,7 @@ class CanvasManager {
     }
 
     this.element = element;
-    this.context = <CanvasRenderingContext2D>this.element.getContext('2d');
+    this.context = <CanvasRenderingContext2D> this.element.getContext('2d');
 
     this.items = [];
 
