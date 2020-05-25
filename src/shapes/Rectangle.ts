@@ -3,7 +3,6 @@ import CanvasManager from '../CanvasManager';
 type RectangleProps = {
   x: number;
   y: number;
-  z: number;
   width: number;
   height: number;
   color: string;

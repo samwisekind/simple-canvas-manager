@@ -1,9 +1,10 @@
 import Rectangle, { RectangleProps } from './shapes/Rectangle';
+import Arc, { ArcProps } from './shapes/Arc';
 
 interface CanvasManager {
   element: HTMLCanvasElement;
   context: CanvasRenderingContext2D;
-  items: Array<Rectangle>;
+  items: Array<Rectangle|Arc>;
 }
 
 class CanvasManager {
@@ -31,6 +32,15 @@ class CanvasManager {
 
   addRectangle(props: RectangleProps):Rectangle {
     const shape = new Rectangle(props, this);
+    this.items.push(shape);
+    this.redraw();
+
+    return shape;
+  }
+
+
+  addArc(props: ArcProps):Arc {
+    const shape = new Arc(props, this);
     this.items.push(shape);
     this.redraw();
 

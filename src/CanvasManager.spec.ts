@@ -33,4 +33,30 @@ describe('CanvasElement', () => {
     expect(() => createManager(element)).toThrow(TypeError);
     expect(() => createManager(element)).toThrow('CanvasManager must be created with an HTML Canvas element, type provided is: div');
   });
+
+  it('Adds multiple shapes', () => {
+    document.body.innerHTML = '<canvas></canvas>';
+    const element = document.body.querySelector('canvas');
+
+    const manager = new CanvasManager(element);
+
+    const shape1 = manager.addRectangle({
+      x: 20,
+      y: 20,
+      width: 100,
+      height: 100,
+      color: 'red',
+    });
+
+    const shape2 = manager.addArc({
+      x: 20,
+      y: 40,
+      radius: 50,
+      startAngle: 0,
+      endAngle: Math.PI,
+      color: 'red',
+    });
+
+    expect(manager.items).toStrictEqual([shape1, shape2]);
+  });
 });
