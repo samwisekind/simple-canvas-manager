@@ -1,4 +1,4 @@
-name: Lint and test on master
+name: Master
 
 on:
   pull_request:
@@ -9,7 +9,7 @@ on:
     - cron: "0 0 * * *" # Every day at 0000 UTC (midnight)
 
 jobs:
-  master-lint-and-test:
+  master:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
@@ -25,7 +25,7 @@ jobs:
     - name: Transpile TypeScript files
       run: npm run build
     - name: Run unit tests and upload coverage
-      uses: paambaati/codeclimate-action@v2.2.4
+      uses: paambaati/codeclimate-action@v2.6.0
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_TEST_REPORTER_ID }}
       with:

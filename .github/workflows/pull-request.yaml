@@ -1,10 +1,10 @@
-name: Lint and test on pull-requests
+name: Pull Request
 
 on:
   pull_request:
 
 jobs:
-  pr-lint-and-test:
+  pull-request:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
