@@ -1,15 +1,10 @@
-name: Lint and test
+name: Lint and test on pull-requests
 
 on:
   pull_request:
-  push:
-    branches:
-      - master
-  schedule:
-    - cron: "0 0 * * *" # Every day at 0000 UTC (midnight)
 
 jobs:
-  lint-and-test:
+  pr-lint-and-test:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
@@ -24,10 +19,5 @@ jobs:
       run: npm run test:eslint
     - name: Transpile TypeScript files
       run: npm run build
-    - name: Run unit tests and upload coverage
-      uses: paambaati/codeclimate-action@v2.2.4
-      env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_TEST_REPORTER_ID }}
-      with:
-        coverageCommand: npm run test:unit:coverage
-        coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov
+    - name: Run unit tests
+      run: npm run test:unit:coverage
