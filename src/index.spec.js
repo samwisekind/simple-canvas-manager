@@ -12,7 +12,7 @@ describe('CanvasElement', () => {
     const manager = new CanvasManager(element);
 
     expect(manager.element).toBe(element);
-    expect(manager.canvas).toBe(element.getContext('2d'));
+    expect(manager.context).toBe(element.getContext('2d'));
   });
 
   it('Throws a TypeError when CanvasManager is created with a non-HTML type', () => {
