@@ -8,7 +8,7 @@
     "watch": "npm run build -- -w",
     "test": "npm run test:eslint && npm run test:unit",
     "test:eslint": "eslint src/",
-    "test:unit": "jest .*.spec.js",
+    "test:unit": "jest .*.spec.ts",
     "test:unit:watch": "npm run test:unit -- --watch",
     "test:unit:coverage": "npm run test:unit -- --coverage"
   },
