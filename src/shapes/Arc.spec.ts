@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import CanvasManager from '../CanvasManager';
+import SimpleCanvasManager from '../SimpleCanvasManager';
 
 beforeEach(() => {
   document.body.innerHTML = '<canvas></canvas>';
@@ -8,7 +8,7 @@ beforeEach(() => {
 
 describe('Arc', () => {
   it('Creates an arc', () => {
-    const manager = new CanvasManager(document.body.querySelector('canvas'));
+    const manager = new SimpleCanvasManager(document.body.querySelector('canvas'));
 
     expect(manager.items.length).toBe(0);
 
@@ -55,7 +55,7 @@ describe('Arc', () => {
   });
 
   it('Changes arc props', () => {
-    const manager = new CanvasManager(document.body.querySelector('canvas'));
+    const manager = new SimpleCanvasManager(document.body.querySelector('canvas'));
     const arc = manager.addArc({
       x: 20,
       y: 40,

@@ -1,18 +1,18 @@
 import Rectangle, { RectangleProps } from './shapes/Rectangle';
 import Arc, { ArcProps } from './shapes/Arc';
 
-interface CanvasManager {
+interface SimpleCanvasManager {
   element: HTMLCanvasElement;
   context: CanvasRenderingContext2D;
   items: Array<Rectangle|Arc>;
 }
 
-class CanvasManager {
+class SimpleCanvasManager {
   constructor(element: HTMLCanvasElement) {
     if (element instanceof HTMLElement === false) {
-      throw TypeError(`CanvasManager must be created with an HTML element, type provided is: ${typeof element}`);
+      throw TypeError(`SimpleCanvasManager must be created with an HTML element, type provided is: ${typeof element}`);
     } else if (element instanceof HTMLCanvasElement === false) {
-      throw TypeError(`CanvasManager must be created with an HTML Canvas element, type provided is: ${element.nodeName.toLowerCase()}`);
+      throw TypeError(`SimpleCanvasManager must be created with an HTML Canvas element, type provided is: ${element.nodeName.toLowerCase()}`);
     }
 
     this.element = element;
@@ -23,7 +23,7 @@ class CanvasManager {
     return this;
   }
 
-  redraw():CanvasManager {
+  redraw():SimpleCanvasManager {
     this.context.clearRect(0, 0, this.element.width, this.element.height);
     this.items.forEach((item) => item.draw());
 
@@ -48,4 +48,4 @@ class CanvasManager {
   }
 }
 
-export default CanvasManager;
+export default SimpleCanvasManager;

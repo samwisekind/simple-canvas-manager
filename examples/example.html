@@ -7,10 +7,10 @@
   <body>
     <canvas id="test"></canvas>
 
-    <script src="../dist/CanvasManager.js"></script>
+    <script src="../dist/SimpleCanvasManager.js"></script>
 
     <script type="application/javascript">
-      const manager = new window.CanvasManager(document.querySelector('#test'));
+      const manager = new window.SimpleCanvasManager(document.querySelector('#test'));
       
       const shape1 = manager.addRectangle({ x: 20, y: 20, width: 150, height: 100, color: 'red' });
       const shape2 = manager.addRectangle({ x: 30, y: 30, width: 20, height: 20, color: 'green' });

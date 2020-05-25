@@ -1,4 +1,4 @@
-import CanvasManager from '../CanvasManager';
+import SimpleCanvasManager from '../SimpleCanvasManager';
 
 type ArcProps = {
   x: number;
@@ -12,12 +12,12 @@ type ArcProps = {
 
 interface Arc {
   props: ArcProps;
-  parent: CanvasManager;
+  parent: SimpleCanvasManager;
   draw(): void;
 }
 
 class Arc {
-  constructor(props: ArcProps, parent: CanvasManager) {
+  constructor(props: ArcProps, parent: SimpleCanvasManager) {
     this.props = {
       ...props,
       anticlockwise: props.anticlockwise || false,

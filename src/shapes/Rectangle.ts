@@ -1,4 +1,4 @@
-import CanvasManager from '../CanvasManager';
+import SimpleCanvasManager from '../SimpleCanvasManager';
 
 type RectangleProps = {
   x: number;
@@ -10,12 +10,12 @@ type RectangleProps = {
 
 interface Rectangle {
   props: RectangleProps;
-  parent: CanvasManager;
+  parent: SimpleCanvasManager;
   draw(): void;
 }
 
 class Rectangle {
-  constructor(props: RectangleProps, parent: CanvasManager) {
+  constructor(props: RectangleProps, parent: SimpleCanvasManager) {
     this.props = props;
     this.parent = parent;
 
