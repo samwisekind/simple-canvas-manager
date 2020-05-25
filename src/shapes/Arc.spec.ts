@@ -49,7 +49,7 @@ describe('Arc', () => {
       radius: 200,
       startAngle: Math.PI,
       endAngle: Math.PI * 2,
-      anticlockwise: false,
+      anticlockwise: false, // Testing for default value
       color: 'blue',
     });
   });
