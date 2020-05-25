@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import CanvasManager from '../CanvasManager';
+import SimpleCanvasManager from '../SimpleCanvasManager';
 
 beforeEach(() => {
   document.body.innerHTML = '<canvas></canvas>';
@@ -8,7 +8,7 @@ beforeEach(() => {
 
 describe('Rectangle', () => {
   it('Creates a rectangle', () => {
-    const manager = new CanvasManager(document.body.querySelector('canvas'));
+    const manager = new SimpleCanvasManager(document.body.querySelector('canvas'));
 
     expect(manager.items.length).toBe(0);
 
@@ -48,7 +48,7 @@ describe('Rectangle', () => {
   });
 
   it('Changes rectangle props', () => {
-    const manager = new CanvasManager(document.body.querySelector('canvas'));
+    const manager = new SimpleCanvasManager(document.body.querySelector('canvas'));
     const rectangle = manager.addRectangle({
       x: 20,
       y: 20,
