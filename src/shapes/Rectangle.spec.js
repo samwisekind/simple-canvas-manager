@@ -19,6 +19,13 @@ describe('Rectangle', () => {
     });
     expect(manager.items.length).toBe(1);
     expect(manager.items[0]).toStrictEqual(rectangle1);
+    expect(manager.items[0].props).toStrictEqual({
+      x: 20,
+      y: 20,
+      width: 100,
+      height: 100,
+      color: 'red',
+    });
 
     const rectangle2 = manager.addRectangle({
       x: 40,
@@ -29,6 +36,13 @@ describe('Rectangle', () => {
     });
     expect(manager.items.length).toBe(2);
     expect(manager.items[1]).toStrictEqual(rectangle2);
+    expect(manager.items[1].props).toStrictEqual({
+      x: 40,
+      y: 40,
+      width: 150,
+      height: 250,
+      color: 'blue',
+    });
   });
 
   it('Changes rectangle props', () => {
