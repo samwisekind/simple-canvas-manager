@@ -42,7 +42,6 @@
     "typescript": "^3.9.3"
   },
   "eslintConfig": {
-    "root": true,
     "parser": "@typescript-eslint/parser",
     "plugins": [
       "@typescript-eslint"
