@@ -26,7 +26,7 @@ class Rectangle {
     return this.props.x;
   }
 
-  set x(x) {
+  set x(x: number) {
     this.props.x = x;
     this.parent.redraw();
   }
@@ -35,7 +35,7 @@ class Rectangle {
     return this.props.y;
   }
 
-  set y(y) {
+  set y(y: number) {
     this.props.y = y;
     this.parent.redraw();
   }
@@ -44,7 +44,7 @@ class Rectangle {
     return this.props.width;
   }
 
-  set width(width) {
+  set width(width: number) {
     this.props.width = width;
     this.parent.redraw();
   }
@@ -53,7 +53,7 @@ class Rectangle {
     return this.props.height;
   }
 
-  set height(height) {
+  set height(height: number) {
     this.props.height = height;
     this.parent.redraw();
   }
@@ -62,7 +62,7 @@ class Rectangle {
     return this.props.color;
   }
 
-  set color(color) {
+  set color(color: string) {
     this.props.color = color;
     this.parent.redraw();
   }

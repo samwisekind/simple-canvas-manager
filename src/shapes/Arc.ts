@@ -31,7 +31,7 @@ class Arc {
     return this.props.x;
   }
 
-  set x(x) {
+  set x(x: number) {
     this.props.x = x;
     this.parent.redraw();
   }
@@ -40,7 +40,7 @@ class Arc {
     return this.props.y;
   }
 
-  set y(y) {
+  set y(y: number) {
     this.props.y = y;
     this.parent.redraw();
   }
@@ -49,7 +49,7 @@ class Arc {
     return this.props.radius;
   }
 
-  set radius(radius) {
+  set radius(radius: number) {
     this.props.radius = radius;
     this.parent.redraw();
   }
@@ -58,7 +58,7 @@ class Arc {
     return this.props.startAngle;
   }
 
-  set startAngle(startAngle) {
+  set startAngle(startAngle: number) {
     this.props.startAngle = startAngle;
     this.parent.redraw();
   }
@@ -67,7 +67,7 @@ class Arc {
     return this.props.endAngle;
   }
 
-  set endAngle(endAngle) {
+  set endAngle(endAngle: number) {
     this.props.endAngle = endAngle;
     this.parent.redraw();
   }
@@ -76,7 +76,7 @@ class Arc {
     return this.props.anticlockwise!;
   }
 
-  set anticlockwise(anticlockwise) {
+  set anticlockwise(anticlockwise: boolean) {
     this.props.anticlockwise = anticlockwise;
     this.parent.redraw();
   }
@@ -85,7 +85,7 @@ class Arc {
     return this.props.color;
   }
 
-  set color(color) {
+  set color(color: string) {
     this.props.color = color;
     this.parent.redraw();
   }
