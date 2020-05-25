@@ -3,12 +3,11 @@
 import CanvasManager from './CanvasManager';
 
 beforeEach(() => {
-  document.body.innerHTML = '';
+  document.body.innerHTML = '<canvas></canvas>';
 });
 
 describe('CanvasElement', () => {
   it('Creates a CanvasManager with a canvas element correctly', () => {
-    document.body.innerHTML = '<canvas></canvas>';
     const element = document.body.querySelector('canvas');
 
     const manager = new CanvasManager(element);
@@ -26,6 +25,7 @@ describe('CanvasElement', () => {
 
   it('Throws a TypeError when CanvasManager is created with a non-canvas HTML element', () => {
     document.body.innerHTML = '<div></div>';
+
     const element = document.body.querySelector('div');
 
     const createManager = (targetElement) => new CanvasManager(targetElement);
@@ -35,10 +35,7 @@ describe('CanvasElement', () => {
   });
 
   it('Adds multiple shapes', () => {
-    document.body.innerHTML = '<canvas></canvas>';
-    const element = document.body.querySelector('canvas');
-
-    const manager = new CanvasManager(element);
+    const manager = new CanvasManager(document.body.querySelector('canvas'));
 
     const shape1 = manager.addRectangle({
       x: 20,
