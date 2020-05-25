@@ -7,7 +7,7 @@ type RectangleProps = {
   width: number;
   height: number;
   color: string;
-}
+};
 
 interface Rectangle {
   props: RectangleProps;
