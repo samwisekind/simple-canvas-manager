@@ -1,7 +1,13 @@
-import Rectangle from './shapes/Rectangle';
+import Rectangle, { RectangleProps } from './shapes/Rectangle';
+
+interface CanvasManager {
+  element: HTMLCanvasElement;
+  context: CanvasRenderingContext2D;
+  items: Array<Rectangle>;
+}
 
 class CanvasManager {
-  constructor(element) {
+  constructor(element: HTMLCanvasElement) {
     if (element instanceof HTMLElement === false) {
       throw TypeError(`CanvasManager must be created with an HTML element, type provided is: ${typeof element}`);
     } else if (element instanceof HTMLCanvasElement === false) {
@@ -9,33 +15,27 @@ class CanvasManager {
     }
 
     this.element = element;
-    this.context = this.element.getContext('2d');
+    this.context = <CanvasRenderingContext2D>this.element.getContext('2d');
 
     this.items = [];
 
     return this;
   }
 
-  redraw() {
+  redraw():CanvasManager {
     this.context.clearRect(0, 0, this.element.width, this.element.height);
     this.items.forEach((item) => item.draw());
 
     return this;
   }
 
-  addRectangle(props) {
-    const shape = new Rectangle(this, props);
+  addRectangle(props: RectangleProps):Rectangle {
+    const shape = new Rectangle(props, this);
     this.items.push(shape);
     this.redraw();
 
     return shape;
   }
-}
-
-interface CanvasManager {
-  element: HTMLCanvasElement;
-  context: CanvasRenderingContext2D | null;
-  items: Array<Rectangle>;
 }
 
 export default CanvasManager;
