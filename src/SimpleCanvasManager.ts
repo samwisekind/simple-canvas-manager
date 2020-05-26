@@ -49,3 +49,11 @@ class SimpleCanvasManager {
 }
 
 export default SimpleCanvasManager;
+
+declare global {
+  interface Window {
+    SimpleCanvasManager: typeof SimpleCanvasManager;
+  }
+}
+
+if (window) window.SimpleCanvasManager = SimpleCanvasManager;

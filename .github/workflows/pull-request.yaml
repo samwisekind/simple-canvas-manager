@@ -17,7 +17,7 @@ jobs:
       run: npm ci --unsafe-perm
     - name: Test eslint
       run: npm run test:eslint
-    - name: Transpile TypeScript files
-      run: npm run build
+    - name: Test TypeScript files
+      run: npm run test:typescript
     - name: Run unit tests
       run: npm run test:unit:coverage

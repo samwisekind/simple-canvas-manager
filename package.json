@@ -4,10 +4,12 @@
   "description": "A simple 2D canvas manager",
   "main": "src/index.js",
   "scripts": {
-    "build": "tsc",
-    "watch": "npm run build -- -w",
-    "test": "npm run test:eslint && npm run build && npm run test:unit",
+    "build": "parcel build ./src/SimpleCanvasManager.ts -d ./dist --target browser",
+    "watch": "parcel watch ./src/SimpleCanvasManager.ts -d ./dist --target browser --no-hmr",
+    "test": "npm run test:eslint && npm run test:typescript && npm run test:unit",
     "test:eslint": "eslint src/",
+    "test:typescript": "tsc",
+    "test:typescript:watch": "tsc -- --watch",
     "test:unit": "jest .*.spec.ts",
     "test:unit:watch": "npm run test:unit -- --watch",
     "test:unit:coverage": "npm run test:unit -- --coverage"
@@ -29,6 +31,7 @@
   },
   "homepage": "https://github.com/Flamov/simple-canvas-manager#readme",
   "devDependencies": {
+    "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-typescript": "^7.9.0",
     "@types/jest": "^25.2.3",
@@ -39,6 +42,7 @@
     "eslint-config-airbnb-typescript": "^7.2.1",
     "eslint-plugin-import": "^2.20.2",
     "jest": "^26.0.1",
+    "parcel-bundler": "^1.12.4",
     "typescript": "^3.9.3"
   },
   "eslintConfig": {
