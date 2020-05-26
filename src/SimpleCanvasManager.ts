@@ -56,4 +56,5 @@ declare global {
   }
 }
 
-if (window) window.SimpleCanvasManager = SimpleCanvasManager;
+/* istanbul ignore else */
+if (!window?.SimpleCanvasManager) window.SimpleCanvasManager = SimpleCanvasManager;
