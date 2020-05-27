@@ -14,6 +14,8 @@ describe('CanvasElement', () => {
 
     expect(manager.element).toStrictEqual(element);
     expect(manager.context).toStrictEqual(element.getContext('2d'));
+
+    expect(window.SimpleCanvasManager).toBe(SimpleCanvasManager);
   });
 
   it('Throws a TypeError when SimpleCanvasManager is created with a non-HTML type', () => {
