@@ -3,6 +3,7 @@ import SimpleCanvasManager from '../SimpleCanvasManager';
 type ArcProps = {
   x: number;
   y: number;
+  z: number;
   radius: number;
   startAngle: number;
   endAngle: number;
@@ -45,6 +46,15 @@ class Arc {
 
   set y(y: number) {
     this.props.y = y;
+    if (this.parent instanceof SimpleCanvasManager) this.parent.redraw();
+  }
+
+  get z(): number {
+    return this.props.z;
+  }
+
+  set z(z: number) {
+    this.props.z = z;
     if (this.parent instanceof SimpleCanvasManager) this.parent.redraw();
   }
 

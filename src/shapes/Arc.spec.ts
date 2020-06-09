@@ -15,7 +15,8 @@ describe('Arc', () => {
     const arc1 = manager.addLayer(
       new manager.shapes.Arc({
         x: 20,
-        y: 20,
+        y: 30,
+        z: 40,
         radius: 100,
         startAngle: 0,
         endAngle: Math.PI * 2,
@@ -28,7 +29,8 @@ describe('Arc', () => {
     expect(manager.layers[0]).toStrictEqual(arc1);
     expect(manager.layers[0].props).toStrictEqual({
       x: 20,
-      y: 20,
+      y: 30,
+      z: 40,
       radius: 100,
       startAngle: 0,
       endAngle: Math.PI * 2,
@@ -38,8 +40,9 @@ describe('Arc', () => {
 
     const arc2 = manager.addLayer(
       new manager.shapes.Arc({
-        x: 40,
-        y: 40,
+        x: 50,
+        y: 60,
+        z: 70,
         radius: 200,
         startAngle: Math.PI,
         endAngle: Math.PI * 2,
@@ -50,8 +53,9 @@ describe('Arc', () => {
     expect(manager.layers.length).toBe(2);
     expect(manager.layers[1]).toStrictEqual(arc2);
     expect(manager.layers[1].props).toStrictEqual({
-      x: 40,
-      y: 40,
+      x: 50,
+      y: 60,
+      z: 70,
       radius: 200,
       startAngle: Math.PI,
       endAngle: Math.PI * 2,
@@ -67,6 +71,7 @@ describe('Arc', () => {
       new manager.shapes.Arc({
         x: 20,
         y: 40,
+        z: 10,
         radius: 50,
         startAngle: 0,
         endAngle: Math.PI,
@@ -82,6 +87,10 @@ describe('Arc', () => {
     arc.y = 80;
     expect(arc.y).toBe(80);
     expect(arc.props.y).toBe(80);
+
+    arc.z = 20;
+    expect(arc.z).toBe(20);
+    expect(arc.props.z).toBe(20);
 
     arc.radius = 100;
     expect(arc.radius).toBe(100);

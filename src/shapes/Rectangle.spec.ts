@@ -15,7 +15,8 @@ describe.only('Rectangle', () => {
     const rectangle1 = manager.addLayer(
       new manager.shapes.Rectangle({
         x: 20,
-        y: 20,
+        y: 30,
+        z: 40,
         width: 100,
         height: 100,
         color: 'red',
@@ -26,7 +27,8 @@ describe.only('Rectangle', () => {
     expect(manager.layers[0]).toStrictEqual(rectangle1);
     expect(manager.layers[0].props).toStrictEqual({
       x: 20,
-      y: 20,
+      y: 30,
+      z: 40,
       width: 100,
       height: 100,
       color: 'red',
@@ -34,8 +36,9 @@ describe.only('Rectangle', () => {
 
     const rectangle2 = manager.addLayer(
       new manager.shapes.Rectangle({
-        x: 40,
-        y: 40,
+        x: 50,
+        y: 60,
+        z: 70,
         width: 150,
         height: 250,
         color: 'blue',
@@ -45,8 +48,9 @@ describe.only('Rectangle', () => {
     expect(manager.layers.length).toBe(2);
     expect(manager.layers[1]).toStrictEqual(rectangle2);
     expect(manager.layers[1].props).toStrictEqual({
-      x: 40,
-      y: 40,
+      x: 50,
+      y: 60,
+      z: 70,
       width: 150,
       height: 250,
       color: 'blue',
@@ -60,6 +64,7 @@ describe.only('Rectangle', () => {
       new manager.shapes.Rectangle({
         x: 20,
         y: 20,
+        z: 10,
         width: 100,
         height: 100,
         color: 'red',
@@ -73,6 +78,10 @@ describe.only('Rectangle', () => {
     rectangle.y = 80;
     expect(rectangle.y).toBe(80);
     expect(rectangle.props.y).toBe(80);
+
+    rectangle.z = 20;
+    expect(rectangle.z).toBe(20);
+    expect(rectangle.props.z).toBe(20);
 
     rectangle.width = 120;
     expect(rectangle.width).toBe(120);

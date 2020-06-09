@@ -3,6 +3,7 @@ import SimpleCanvasManager from '../SimpleCanvasManager';
 type RectangleProps = {
   x: number;
   y: number;
+  z: number;
   width: number;
   height: number;
   color: string;
@@ -40,6 +41,15 @@ class Rectangle {
 
   set y(y: number) {
     this.props.y = y;
+    if (this.parent instanceof SimpleCanvasManager) this.parent.redraw();
+  }
+
+  get z(): number {
+    return this.props.z;
+  }
+
+  set z(z: number) {
+    this.props.z = z;
     if (this.parent instanceof SimpleCanvasManager) this.parent.redraw();
   }
 
