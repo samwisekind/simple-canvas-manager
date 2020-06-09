@@ -41,7 +41,7 @@ class SimpleCanvasManager {
     return this;
   }
 
-  addLayer(shape: Rectangle|Arc):Rectangle|Arc {
+  addLayer(shape: Rectangle|Arc): Rectangle|Arc {
     shape.setParent(this);
     shape.draw();
 

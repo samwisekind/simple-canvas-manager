@@ -21,11 +21,11 @@ class Rectangle {
     this.parent = null;
   }
 
-  setParent(parent:SimpleCanvasManager) {
+  setParent(parent: SimpleCanvasManager) {
     this.parent = parent;
   }
 
-  get x():number {
+  get x(): number {
     return this.props.x;
   }
 
@@ -34,7 +34,7 @@ class Rectangle {
     if (this.parent instanceof SimpleCanvasManager) this.parent.redraw();
   }
 
-  get y():number {
+  get y(): number {
     return this.props.y;
   }
 
@@ -43,7 +43,7 @@ class Rectangle {
     if (this.parent instanceof SimpleCanvasManager) this.parent.redraw();
   }
 
-  get width():number {
+  get width(): number {
     return this.props.width;
   }
 
@@ -52,7 +52,7 @@ class Rectangle {
     if (this.parent instanceof SimpleCanvasManager) this.parent.redraw();
   }
 
-  get height():number {
+  get height(): number {
     return this.props.height;
   }
 
@@ -61,7 +61,7 @@ class Rectangle {
     if (this.parent instanceof SimpleCanvasManager) this.parent.redraw();
   }
 
-  get color():string {
+  get color(): string {
     return this.props.color;
   }
 

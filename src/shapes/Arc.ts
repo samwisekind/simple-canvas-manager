@@ -26,11 +26,11 @@ class Arc {
     this.parent = null;
   }
 
-  setParent(parent:SimpleCanvasManager) {
+  setParent(parent: SimpleCanvasManager) {
     this.parent = parent;
   }
 
-  get x():number {
+  get x(): number {
     return this.props.x;
   }
 
@@ -39,7 +39,7 @@ class Arc {
     if (this.parent instanceof SimpleCanvasManager) this.parent.redraw();
   }
 
-  get y():number {
+  get y(): number {
     return this.props.y;
   }
 
@@ -48,7 +48,7 @@ class Arc {
     if (this.parent instanceof SimpleCanvasManager) this.parent.redraw();
   }
 
-  get radius():number {
+  get radius(): number {
     return this.props.radius;
   }
 
@@ -57,7 +57,7 @@ class Arc {
     if (this.parent instanceof SimpleCanvasManager) this.parent.redraw();
   }
 
-  get startAngle():number {
+  get startAngle(): number {
     return this.props.startAngle;
   }
 
@@ -66,7 +66,7 @@ class Arc {
     if (this.parent instanceof SimpleCanvasManager) this.parent.redraw();
   }
 
-  get endAngle():number {
+  get endAngle(): number {
     return this.props.endAngle;
   }
 
@@ -75,7 +75,7 @@ class Arc {
     if (this.parent instanceof SimpleCanvasManager) this.parent.redraw();
   }
 
-  get anticlockwise():boolean {
+  get anticlockwise(): boolean {
     return this.props.anticlockwise!;
   }
 
@@ -84,7 +84,7 @@ class Arc {
     if (this.parent instanceof SimpleCanvasManager) this.parent.redraw();
   }
 
-  get color():string {
+  get color(): string {
     return this.props.color;
   }
 
