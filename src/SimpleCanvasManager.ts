@@ -1,10 +1,15 @@
-import Rectangle, { RectangleProps } from './shapes/Rectangle';
-import Arc, { ArcProps } from './shapes/Arc';
+import Rectangle from './shapes/Rectangle';
+import Arc from './shapes/Arc';
 
 interface SimpleCanvasManager {
   element: HTMLCanvasElement;
   context: CanvasRenderingContext2D;
-  items: Array<Rectangle|Arc>;
+  manager: SimpleCanvasManager;
+  shapes: {
+    Rectangle: typeof Rectangle,
+    Arc: typeof Arc,
+  };
+  layers: Array<Rectangle|Arc>;
 }
 
 class SimpleCanvasManager {
@@ -17,32 +22,30 @@ class SimpleCanvasManager {
 
     this.element = element;
     this.context = <CanvasRenderingContext2D> this.element.getContext('2d');
+    this.manager = this;
 
-    this.items = [];
+    this.shapes = {
+      Rectangle,
+      Arc,
+    };
+
+    this.layers = [];
 
     return this;
   }
 
-  redraw():SimpleCanvasManager {
+  redraw(): SimpleCanvasManager {
     this.context.clearRect(0, 0, this.element.width, this.element.height);
-    this.items.forEach((item) => item.draw());
+    this.layers.forEach((item) => item.draw());
 
     return this;
   }
 
-  addRectangle(props: RectangleProps):Rectangle {
-    const shape = new Rectangle(props, this);
-    this.items.push(shape);
-    this.redraw();
+  addLayer(shape: Rectangle|Arc): Rectangle|Arc {
+    shape.setParent(this);
+    shape.draw();
 
-    return shape;
-  }
-
-
-  addArc(props: ArcProps):Arc {
-    const shape = new Arc(props, this);
-    this.items.push(shape);
-    this.redraw();
+    this.layers.push(shape);
 
     return shape;
   }
@@ -52,9 +55,20 @@ export default SimpleCanvasManager;
 
 declare global {
   interface Window {
-    SimpleCanvasManager: typeof SimpleCanvasManager;
+    SimpleCanvasManager: {
+      Manager: typeof SimpleCanvasManager,
+      Shapes: {
+        Rectangle: typeof Rectangle,
+        Arc: typeof Arc,
+      }
+    }
   }
 }
 
 /* istanbul ignore else */
-if (!window?.SimpleCanvasManager) window.SimpleCanvasManager = SimpleCanvasManager;
+if (!window?.SimpleCanvasManager) {
+  window.SimpleCanvasManager = {
+    Manager: SimpleCanvasManager,
+    Shapes: { Rectangle, Arc },
+  };
+}

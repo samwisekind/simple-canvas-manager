@@ -10,9 +10,23 @@ describe('Arc', () => {
   it('Creates an arc', () => {
     const manager = new SimpleCanvasManager(document.body.querySelector('canvas'));
 
-    expect(manager.items.length).toBe(0);
+    expect(manager.layers.length).toBe(0);
 
-    const arc1 = manager.addArc({
+    const arc1 = manager.addLayer(
+      new manager.shapes.Arc({
+        x: 20,
+        y: 20,
+        radius: 100,
+        startAngle: 0,
+        endAngle: Math.PI * 2,
+        anticlockwise: true,
+        color: 'red',
+      }),
+    );
+
+    expect(manager.layers.length).toBe(1);
+    expect(manager.layers[0]).toStrictEqual(arc1);
+    expect(manager.layers[0].props).toStrictEqual({
       x: 20,
       y: 20,
       radius: 100,
@@ -21,29 +35,21 @@ describe('Arc', () => {
       anticlockwise: true,
       color: 'red',
     });
-    expect(manager.items.length).toBe(1);
-    expect(manager.items[0]).toStrictEqual(arc1);
-    expect(manager.items[0].props).toStrictEqual({
-      x: 20,
-      y: 20,
-      radius: 100,
-      startAngle: 0,
-      endAngle: Math.PI * 2,
-      anticlockwise: true,
-      color: 'red',
-    });
 
-    const arc2 = manager.addArc({
-      x: 40,
-      y: 40,
-      radius: 200,
-      startAngle: Math.PI,
-      endAngle: Math.PI * 2,
-      color: 'blue',
-    });
-    expect(manager.items.length).toBe(2);
-    expect(manager.items[1]).toStrictEqual(arc2);
-    expect(manager.items[1].props).toStrictEqual({
+    const arc2 = manager.addLayer(
+      new manager.shapes.Arc({
+        x: 40,
+        y: 40,
+        radius: 200,
+        startAngle: Math.PI,
+        endAngle: Math.PI * 2,
+        color: 'blue',
+      }),
+    );
+
+    expect(manager.layers.length).toBe(2);
+    expect(manager.layers[1]).toStrictEqual(arc2);
+    expect(manager.layers[1].props).toStrictEqual({
       x: 40,
       y: 40,
       radius: 200,
@@ -56,15 +62,18 @@ describe('Arc', () => {
 
   it('Changes arc props', () => {
     const manager = new SimpleCanvasManager(document.body.querySelector('canvas'));
-    const arc = manager.addArc({
-      x: 20,
-      y: 40,
-      radius: 50,
-      startAngle: 0,
-      endAngle: Math.PI,
-      anticlockwise: false,
-      color: 'red',
-    });
+
+    const arc = manager.addLayer(
+      new manager.shapes.Arc({
+        x: 20,
+        y: 40,
+        radius: 50,
+        startAngle: 0,
+        endAngle: Math.PI,
+        anticlockwise: false,
+        color: 'red',
+      }),
+    );
 
     arc.x = 60;
     expect(arc.x).toBe(60);

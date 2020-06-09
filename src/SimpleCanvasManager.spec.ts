@@ -1,6 +1,8 @@
 // @ts-nocheck
 
 import SimpleCanvasManager from './SimpleCanvasManager';
+import Rectangle from './shapes/Rectangle';
+import Arc from './shapes/Arc';
 
 beforeEach(() => {
   document.body.innerHTML = '<canvas></canvas>';
@@ -15,7 +17,10 @@ describe('CanvasElement', () => {
     expect(manager.element).toStrictEqual(element);
     expect(manager.context).toStrictEqual(element.getContext('2d'));
 
-    expect(window.SimpleCanvasManager).toBe(SimpleCanvasManager);
+    expect(window.SimpleCanvasManager).toStrictEqual({
+      Manager: SimpleCanvasManager,
+      Shapes: { Rectangle, Arc },
+    });
   });
 
   it('Throws a TypeError when SimpleCanvasManager is created with a non-HTML type', () => {
@@ -39,7 +44,7 @@ describe('CanvasElement', () => {
   it('Adds multiple shapes', () => {
     const manager = new SimpleCanvasManager(document.body.querySelector('canvas'));
 
-    const shape1 = manager.addRectangle({
+    const shape1 = new manager.shapes.Rectangle({
       x: 20,
       y: 20,
       width: 100,
@@ -47,15 +52,19 @@ describe('CanvasElement', () => {
       color: 'red',
     });
 
-    const shape2 = manager.addArc({
-      x: 20,
-      y: 40,
-      radius: 50,
-      startAngle: 0,
-      endAngle: Math.PI,
-      color: 'red',
-    });
+    manager.addLayer(shape1);
 
-    expect(manager.items).toStrictEqual([shape1, shape2]);
+    const shape2 = manager.addLayer(
+      new manager.shapes.Arc({
+        x: 20,
+        y: 40,
+        radius: 50,
+        startAngle: 0,
+        endAngle: Math.PI,
+        color: 'red',
+      }),
+    );
+
+    expect(manager.layers).toStrictEqual([shape1, shape2]);
   });
 });
