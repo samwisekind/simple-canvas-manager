@@ -22,6 +22,7 @@ class Arc {
       ...props,
       anticlockwise: props.anticlockwise || false,
     };
+
     this.parent = null;
   }
 
@@ -35,7 +36,7 @@ class Arc {
 
   set x(x: number) {
     this.props.x = x;
-    if (this.parent !== null) this.parent.redraw();
+    if (this.parent instanceof SimpleCanvasManager) this.parent.redraw();
   }
 
   get y():number {
@@ -44,7 +45,7 @@ class Arc {
 
   set y(y: number) {
     this.props.y = y;
-    if (this.parent !== null) this.parent.redraw();
+    if (this.parent instanceof SimpleCanvasManager) this.parent.redraw();
   }
 
   get radius():number {
@@ -53,7 +54,7 @@ class Arc {
 
   set radius(radius: number) {
     this.props.radius = radius;
-    if (this.parent !== null) this.parent.redraw();
+    if (this.parent instanceof SimpleCanvasManager) this.parent.redraw();
   }
 
   get startAngle():number {
@@ -62,7 +63,7 @@ class Arc {
 
   set startAngle(startAngle: number) {
     this.props.startAngle = startAngle;
-    if (this.parent !== null) this.parent.redraw();
+    if (this.parent instanceof SimpleCanvasManager) this.parent.redraw();
   }
 
   get endAngle():number {
@@ -71,7 +72,7 @@ class Arc {
 
   set endAngle(endAngle: number) {
     this.props.endAngle = endAngle;
-    if (this.parent !== null) this.parent.redraw();
+    if (this.parent instanceof SimpleCanvasManager) this.parent.redraw();
   }
 
   get anticlockwise():boolean {
@@ -80,7 +81,7 @@ class Arc {
 
   set anticlockwise(anticlockwise: boolean) {
     this.props.anticlockwise = anticlockwise;
-    if (this.parent !== null) this.parent.redraw();
+    if (this.parent instanceof SimpleCanvasManager) this.parent.redraw();
   }
 
   get color():string {
@@ -89,11 +90,11 @@ class Arc {
 
   set color(color: string) {
     this.props.color = color;
-    if (this.parent !== null) this.parent.redraw();
+    if (this.parent instanceof SimpleCanvasManager) this.parent.redraw();
   }
 
   draw() {
-    if (this.parent !== null) {
+    if (this.parent instanceof SimpleCanvasManager) {
       this.parent.context.fillStyle = this.props.color;
 
       this.parent.context.beginPath();
