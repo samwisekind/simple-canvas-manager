@@ -34,7 +34,7 @@ class SimpleCanvasManager {
     return this;
   }
 
-  redraw():SimpleCanvasManager {
+  redraw(): SimpleCanvasManager {
     this.context.clearRect(0, 0, this.element.width, this.element.height);
     this.layers.forEach((item) => item.draw());
 
