@@ -10,16 +10,18 @@ type RectangleProps = {
 
 interface Rectangle {
   props: RectangleProps;
-  parent: SimpleCanvasManager;
+  parent: null|SimpleCanvasManager;
   draw(): void;
 }
 
 class Rectangle {
-  constructor(props: RectangleProps, parent: SimpleCanvasManager) {
+  constructor(props: RectangleProps) {
     this.props = props;
-    this.parent = parent;
+    this.parent = null;
+  }
 
-    this.draw();
+  setParent(parent:SimpleCanvasManager) {
+    this.parent = parent;
   }
 
   get x():number {
@@ -28,7 +30,7 @@ class Rectangle {
 
   set x(x: number) {
     this.props.x = x;
-    this.parent.redraw();
+    if (this.parent !== null) this.parent.redraw();
   }
 
   get y():number {
@@ -37,7 +39,7 @@ class Rectangle {
 
   set y(y: number) {
     this.props.y = y;
-    this.parent.redraw();
+    if (this.parent !== null) this.parent.redraw();
   }
 
   get width():number {
@@ -46,7 +48,7 @@ class Rectangle {
 
   set width(width: number) {
     this.props.width = width;
-    this.parent.redraw();
+    if (this.parent !== null) this.parent.redraw();
   }
 
   get height():number {
@@ -55,7 +57,7 @@ class Rectangle {
 
   set height(height: number) {
     this.props.height = height;
-    this.parent.redraw();
+    if (this.parent !== null) this.parent.redraw();
   }
 
   get color():string {
@@ -64,13 +66,15 @@ class Rectangle {
 
   set color(color: string) {
     this.props.color = color;
-    this.parent.redraw();
+    if (this.parent !== null) this.parent.redraw();
   }
 
   draw() {
-    this.parent.context.fillStyle = this.props.color;
-    this.parent.context.fillRect(this.props.x, this.props.y, this.props.width, this.props.height);
+    if (this.parent !== null) {
+      this.parent.context.fillStyle = this.props.color;
+      this.parent.context.fillRect(this.props.x, this.props.y, this.props.width, this.props.height);
+    }
   }
 }
 
-export { Rectangle as default, RectangleProps };
+export default Rectangle;

@@ -6,39 +6,45 @@ beforeEach(() => {
   document.body.innerHTML = '<canvas></canvas>';
 });
 
-describe('Rectangle', () => {
+describe.only('Rectangle', () => {
   it('Creates a rectangle', () => {
     const manager = new SimpleCanvasManager(document.body.querySelector('canvas'));
 
-    expect(manager.items.length).toBe(0);
+    expect(manager.layers.length).toBe(0);
 
-    const rectangle1 = manager.addRectangle({
+    const rectangle1 = manager.addLayer(
+      new manager.shapes.Rectangle({
+        x: 20,
+        y: 20,
+        width: 100,
+        height: 100,
+        color: 'red',
+      }),
+    );
+
+    expect(manager.layers.length).toBe(1);
+    expect(manager.layers[0]).toStrictEqual(rectangle1);
+    expect(manager.layers[0].props).toStrictEqual({
       x: 20,
       y: 20,
       width: 100,
       height: 100,
       color: 'red',
     });
-    expect(manager.items.length).toBe(1);
-    expect(manager.items[0]).toStrictEqual(rectangle1);
-    expect(manager.items[0].props).toStrictEqual({
-      x: 20,
-      y: 20,
-      width: 100,
-      height: 100,
-      color: 'red',
-    });
 
-    const rectangle2 = manager.addRectangle({
-      x: 40,
-      y: 40,
-      width: 150,
-      height: 250,
-      color: 'blue',
-    });
-    expect(manager.items.length).toBe(2);
-    expect(manager.items[1]).toStrictEqual(rectangle2);
-    expect(manager.items[1].props).toStrictEqual({
+    const rectangle2 = manager.addLayer(
+      new manager.shapes.Rectangle({
+        x: 40,
+        y: 40,
+        width: 150,
+        height: 250,
+        color: 'blue',
+      }),
+    );
+
+    expect(manager.layers.length).toBe(2);
+    expect(manager.layers[1]).toStrictEqual(rectangle2);
+    expect(manager.layers[1].props).toStrictEqual({
       x: 40,
       y: 40,
       width: 150,
@@ -49,13 +55,16 @@ describe('Rectangle', () => {
 
   it('Changes rectangle props', () => {
     const manager = new SimpleCanvasManager(document.body.querySelector('canvas'));
-    const rectangle = manager.addRectangle({
-      x: 20,
-      y: 20,
-      width: 100,
-      height: 100,
-      color: 'red',
-    });
+
+    const rectangle = manager.addLayer(
+      new manager.shapes.Rectangle({
+        x: 20,
+        y: 20,
+        width: 100,
+        height: 100,
+        color: 'red',
+      }),
+    );
 
     rectangle.x = 60;
     expect(rectangle.x).toBe(60);

@@ -12,19 +12,21 @@ type ArcProps = {
 
 interface Arc {
   props: ArcProps;
-  parent: SimpleCanvasManager;
+  parent: null|SimpleCanvasManager;
   draw(): void;
 }
 
 class Arc {
-  constructor(props: ArcProps, parent: SimpleCanvasManager) {
+  constructor(props: ArcProps) {
     this.props = {
       ...props,
       anticlockwise: props.anticlockwise || false,
     };
-    this.parent = parent;
+    this.parent = null;
+  }
 
-    this.draw();
+  setParent(parent:SimpleCanvasManager) {
+    this.parent = parent;
   }
 
   get x():number {
@@ -33,7 +35,7 @@ class Arc {
 
   set x(x: number) {
     this.props.x = x;
-    this.parent.redraw();
+    if (this.parent !== null) this.parent.redraw();
   }
 
   get y():number {
@@ -42,7 +44,7 @@ class Arc {
 
   set y(y: number) {
     this.props.y = y;
-    this.parent.redraw();
+    if (this.parent !== null) this.parent.redraw();
   }
 
   get radius():number {
@@ -51,7 +53,7 @@ class Arc {
 
   set radius(radius: number) {
     this.props.radius = radius;
-    this.parent.redraw();
+    if (this.parent !== null) this.parent.redraw();
   }
 
   get startAngle():number {
@@ -60,7 +62,7 @@ class Arc {
 
   set startAngle(startAngle: number) {
     this.props.startAngle = startAngle;
-    this.parent.redraw();
+    if (this.parent !== null) this.parent.redraw();
   }
 
   get endAngle():number {
@@ -69,7 +71,7 @@ class Arc {
 
   set endAngle(endAngle: number) {
     this.props.endAngle = endAngle;
-    this.parent.redraw();
+    if (this.parent !== null) this.parent.redraw();
   }
 
   get anticlockwise():boolean {
@@ -78,7 +80,7 @@ class Arc {
 
   set anticlockwise(anticlockwise: boolean) {
     this.props.anticlockwise = anticlockwise;
-    this.parent.redraw();
+    if (this.parent !== null) this.parent.redraw();
   }
 
   get color():string {
@@ -87,23 +89,25 @@ class Arc {
 
   set color(color: string) {
     this.props.color = color;
-    this.parent.redraw();
+    if (this.parent !== null) this.parent.redraw();
   }
 
   draw() {
-    this.parent.context.fillStyle = this.props.color;
+    if (this.parent !== null) {
+      this.parent.context.fillStyle = this.props.color;
 
-    this.parent.context.beginPath();
-    this.parent.context.arc(
-      this.props.x,
-      this.props.y,
-      this.props.radius,
-      this.props.startAngle,
-      this.props.endAngle,
-      this.props.anticlockwise,
-    );
-    this.parent.context.fill();
+      this.parent.context.beginPath();
+      this.parent.context.arc(
+        this.props.x,
+        this.props.y,
+        this.props.radius,
+        this.props.startAngle,
+        this.props.endAngle,
+        this.props.anticlockwise,
+      );
+      this.parent.context.fill();
+    }
   }
 }
 
-export { Arc as default, ArcProps };
+export default Arc;
