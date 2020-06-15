@@ -35,17 +35,38 @@ class SimpleCanvasManager {
   }
 
   redraw(): SimpleCanvasManager {
+    this.reorder();
+
     this.context.clearRect(0, 0, this.element.width, this.element.height);
     this.layers.forEach((item) => item.draw());
 
     return this;
   }
 
-  addLayer(shape: Rectangle|Arc): Rectangle|Arc {
-    shape.setParent(this);
-    shape.draw();
+  reorder(): SimpleCanvasManager {
+    // Change prop directly to prevent redrawing recursive loop
+    this.layers.forEach((layer, index) => { layer.props.z = index; });
 
-    this.layers.push(shape);
+    return this;
+  }
+
+  addLayer(shape: Rectangle|Arc): Rectangle|Arc {
+    shape.parent = this;
+
+    // If new layer does not have a z axis value (except 0 which is falsy), add it to the 'top'
+    if (!shape.z && shape.z !== 0) {
+      if (this.layers.length > 0) {
+        shape.props.z = this.layers[this.layers.length - 1].z + 1;
+      } else {
+        shape.props.z = 0;
+      }
+    }
+
+    // Insert at position
+    this.layers.splice(shape.z, 0, shape);
+
+    // To-do: Only redraw if new layer is not at 'top', otherwise draw only that new layer
+    this.redraw();
 
     return shape;
   }

@@ -60,6 +60,12 @@
       "jest": true
     },
     "rules": {
+      "no-param-reassign": [
+        "error",
+        {
+          "props": false
+        }
+      ],
       "import/no-cycle": 0,
       "@typescript-eslint/camelcase": 0
     }

@@ -16,7 +16,7 @@ describe('Arc', () => {
       new manager.shapes.Arc({
         x: 20,
         y: 30,
-        z: 40,
+        z: 0,
         radius: 100,
         startAngle: 0,
         endAngle: Math.PI * 2,
@@ -30,7 +30,7 @@ describe('Arc', () => {
     expect(manager.layers[0].props).toStrictEqual({
       x: 20,
       y: 30,
-      z: 40,
+      z: 0,
       radius: 100,
       startAngle: 0,
       endAngle: Math.PI * 2,
@@ -42,7 +42,7 @@ describe('Arc', () => {
       new manager.shapes.Arc({
         x: 50,
         y: 60,
-        z: 70,
+        z: 1,
         radius: 200,
         startAngle: Math.PI,
         endAngle: Math.PI * 2,
@@ -55,7 +55,7 @@ describe('Arc', () => {
     expect(manager.layers[1].props).toStrictEqual({
       x: 50,
       y: 60,
-      z: 70,
+      z: 1,
       radius: 200,
       startAngle: Math.PI,
       endAngle: Math.PI * 2,
@@ -71,7 +71,7 @@ describe('Arc', () => {
       new manager.shapes.Arc({
         x: 20,
         y: 40,
-        z: 10,
+        z: 0,
         radius: 50,
         startAngle: 0,
         endAngle: Math.PI,
@@ -88,9 +88,10 @@ describe('Arc', () => {
     expect(arc.y).toBe(80);
     expect(arc.props.y).toBe(80);
 
-    arc.z = 20;
-    expect(arc.z).toBe(20);
-    expect(arc.props.z).toBe(20);
+    // z axis layer reordering will reorder the value to 0
+    arc.z = 1;
+    expect(arc.z).toBe(0);
+    expect(arc.props.z).toBe(0);
 
     arc.radius = 100;
     expect(arc.radius).toBe(100);

@@ -16,7 +16,7 @@ describe.only('Rectangle', () => {
       new manager.shapes.Rectangle({
         x: 20,
         y: 30,
-        z: 40,
+        z: 0,
         width: 100,
         height: 100,
         color: 'red',
@@ -28,7 +28,7 @@ describe.only('Rectangle', () => {
     expect(manager.layers[0].props).toStrictEqual({
       x: 20,
       y: 30,
-      z: 40,
+      z: 0,
       width: 100,
       height: 100,
       color: 'red',
@@ -38,7 +38,7 @@ describe.only('Rectangle', () => {
       new manager.shapes.Rectangle({
         x: 50,
         y: 60,
-        z: 70,
+        z: 1,
         width: 150,
         height: 250,
         color: 'blue',
@@ -50,7 +50,7 @@ describe.only('Rectangle', () => {
     expect(manager.layers[1].props).toStrictEqual({
       x: 50,
       y: 60,
-      z: 70,
+      z: 1,
       width: 150,
       height: 250,
       color: 'blue',
@@ -64,7 +64,7 @@ describe.only('Rectangle', () => {
       new manager.shapes.Rectangle({
         x: 20,
         y: 20,
-        z: 10,
+        z: 0,
         width: 100,
         height: 100,
         color: 'red',
@@ -79,9 +79,10 @@ describe.only('Rectangle', () => {
     expect(rectangle.y).toBe(80);
     expect(rectangle.props.y).toBe(80);
 
-    rectangle.z = 20;
-    expect(rectangle.z).toBe(20);
-    expect(rectangle.props.z).toBe(20);
+    // z axis layer reordering will reorder the value to 0
+    rectangle.z = 1;
+    expect(rectangle.z).toBe(0);
+    expect(rectangle.props.z).toBe(0);
 
     rectangle.width = 120;
     expect(rectangle.width).toBe(120);

@@ -22,10 +22,6 @@ class Rectangle {
     this.parent = null;
   }
 
-  setParent(parent: SimpleCanvasManager) {
-    this.parent = parent;
-  }
-
   get x(): number {
     return this.props.x;
   }
